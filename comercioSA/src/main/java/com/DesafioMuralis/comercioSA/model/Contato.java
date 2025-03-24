@@ -1,13 +1,10 @@
 package com.DesafioMuralis.comercioSA.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
-@Table(name="Contato")
+@Table(name = "Contato")
 public class Contato {
 
     @Id

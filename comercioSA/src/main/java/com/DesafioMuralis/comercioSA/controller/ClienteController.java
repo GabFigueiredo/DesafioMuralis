@@ -2,11 +2,9 @@ package com.DesafioMuralis.comercioSA.controller;
 
 import com.DesafioMuralis.comercioSA.model.Cliente;
 import com.DesafioMuralis.comercioSA.service.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/clientes")
