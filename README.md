@@ -111,12 +111,6 @@ O sistema facilita a gestão de clientes e seus contatos.
 - **Frontend**: Após a instalação, a aplicação estará disponível em `http://localhost:5173`. Basta abrir no seu navegador para testar a interface.
 - **Backend**: A API estará disponível em `http://localhost:8080/`. Teste os endpoints usando as coleções anexadas ou pela interface. 
 
-   **Rotas**:
-   **GET**: /clientes, /contatos
-   **POST**: /clientes, /contatos
-   **PUT**: /clientes/{id}, /contatos/{id}
-   **DELETE**: /clientes/{id}, /contatos/{id}
-
 ---
 
 ## **Estrutura de Pastas**
