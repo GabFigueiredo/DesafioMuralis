@@ -109,14 +109,13 @@ O sistema facilita a gestão de clientes e seus contatos.
 ## **Uso**
 
 - **Frontend**: Após a instalação, a aplicação estará disponível em `http://localhost:5173`. Basta abrir no seu navegador para testar a interface.
-- **Backend**: A API estará disponível em `http://localhost:8080/`. Teste os endpoints usando o Postman ou qualquer ou pela interface.
-   Coleção de requests Postman: 
+- **Backend**: A API estará disponível em `http://localhost:8080/`. Teste os endpoints usando as coleções anexadas ou pela interface. 
 
-   Rotas:
-   GET: /clientes, /contatos
-   POST: /clientes, /contatos
-   PUT: /clientes/{id}, /contatos/{id}
-   DELETE: /clientes/{id}, /contatos/{id}
+   **Rotas**:
+   **GET**: /clientes, /contatos
+   **POST**: /clientes, /contatos
+   **PUT**: /clientes/{id}, /contatos/{id}
+   **DELETE**: /clientes/{id}, /contatos/{id}
 
 ---
 
@@ -138,17 +137,17 @@ O sistema facilita a gestão de clientes e seus contatos.
       /styles
       /utils
 
-   /comercioSA
-   /src
-      /main
-         /java
-         /com
-         /DesafioMuralis
-            /comercioSA
-               /controller
-               /model
-               /repository
-               /service
+/comercioSA
+/src
+   /main
+      /java
+      /com
+      /DesafioMuralis
+         /comercioSA
+            /controller
+            /model
+            /repository
+            /service
    ```
 
 ---
