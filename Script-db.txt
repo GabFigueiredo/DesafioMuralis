@@ -1,0 +1,51 @@
+CREATE DATABASE DesafioMuralis;
+ 
+  CREATE TABLE Cliente (
+    ID SERIAL NOT NULL PRIMARY KEY,
+    nome varchar(100) NOT NULL,
+    cpf varchar(14) NOT NULL,
+    data_nascimento DATE,
+    endereco varchar(255)
+);
+
+CREATE TABLE Contato (
+    ID SERIAL NOT NULL PRIMARY KEY,  
+    client_id int NOT NULL,       
+    tipo varchar(50) NOT NULL,
+    valor varchar(100) NOT NULL,
+    observacao varchar(255),
+
+    CONSTRAINT fk_cliente FOREIGN KEY (client_id) 
+        REFERENCES Cliente(ID)
+        ON DELETE CASCADE
+);
+
+
+INSERT INTO Cliente(nome, cpf, data_nascimento, endereco) VALUES 
+    ('Mário Marcos Martins', '928.993.827.19', '2006-03-24', 'Rua da bondade, 91 - Jacareí'),
+    ('Dwight Schrute', '109.289.345.00', '1986-11-08', 'Rua da fazenda, 91 - Scranton'),
+    ('Vincius Santos', '928.746.371.02', '2002-01-13', 'Rua dos diamantes, 62 - Mogi das Cruzes'),
+    ('Henry Murilo Lampoglio', '182.903.874.67', '2004-07-20', 'Rua da código, 101 - Mogi das Cruzes'),
+    ('Steve Jobs', '928.302.918.22', '1886-02-11', 'Rua do iphone, 21 - Massachussets'),
+    ('Bruce Wayne', '912.839.201.64', '1993-05-01', 'Prince Avenue, 57 - Gotham'),
+    ('Luan Vitor Silva de Moraes', '029.837.648.92', '2005-09-27', 'Rua do estudo, 32 - Mogi das Cruzes'),
+    ('Michael Scott', '019.829.015.47', '1972-06-23', 'Rua Mifflin, 17 - Scranton');
+
+INSERT INTO Contato (client_id, tipo, valor, observacao) 
+VALUES 
+    (1, 'Telefone', '11987654321', 'Contato para suporte técnico'),
+    (1, 'Email', 'jose.silva@gmail.com', 'Email principal para comunicação'),
+    (2, 'Telefone', '11912345678', 'Telefone para emergências'),
+    (2, 'Email', 'maria.souza@hotmail.com', 'Email utilizado para marketing'),
+    (3, 'Telefone', '11933334444', 'Número para chamadas comerciais'),
+    (3, 'Email', 'ana.pereira@yahoo.com', 'Email para agendamento de consultas'),
+    (4, 'Telefone', '11944445555', 'Número de contato para vendas'),
+    (4, 'Email', 'paulo.santos@gmail.com', 'Email pessoal para assuntos diversos'),
+    (5, 'Telefone', '11955556666', 'Contato para suporte ao cliente'),
+    (5, 'Email', 'fabiana.silva@outlook.com', 'Email de trabalho da Fabiana'),
+    (6, 'Telefone', '21966667777', 'Número usado para contato com a equipe de vendas'),
+    (6, 'Email', 'ricardo.martins@gmail.com', 'Email secundário de Ricardo'),
+    (7, 'Telefone', '11977778888', 'Número para agendamento de serviços'),
+    (7, 'Email', 'camila.rodrigues@uol.com.br', 'Email pessoal para contato rápido'),
+    (8, 'Telefone', '11988889999', 'Número para atualizações sobre novos produtos'),
+    (8, 'Email', 'lucas.santos@bol.com.br', 'Email utilizado para promoções e ofertas');
