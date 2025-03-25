@@ -104,7 +104,7 @@ O sistema facilita a gestão de clientes e seus contatos.
 
 5. Execute o servidor backend
 
----
+- **Banco de dados**: Execute o script "script-db" no Postgre
 
 ## **Uso**
 
