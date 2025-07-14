@@ -1,57 +1,47 @@
 "use client";
 
-import { SearchBar } from "@/components/searchbar";
 import { Table } from "@/components/table/table";
 import { Skeleton } from "@/components/ui/skeleton";
-import { clientResponse } from "@/interfaces/client-response-schema";
-import { useClientsQuery } from "@/hooks/useGetClients";
-import { useEffect } from "react";
+import { useClientsQuery } from "@/hooks/clients/useGetClients";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useQueryClient } from "@tanstack/react-query";
-import { RefreshCcw } from "lucide-react";
+import { Paperclip } from "lucide-react";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { ClientDetails } from "@/components/table/client-details";
+import { clientResponse } from "@/interfaces/client/client-response-schema";
+import { ClientHeader } from "@/components/client/client-header";
+import { useFiltrarClientes } from "@/hooks/clients/useFilterClients";
+import { SearchBar } from "@/components/client/searchbar";
 
 export function ClientePage() {
-  const queryClient = useQueryClient();
 
   const {
     data: clientes,
     error,
-    isSuccess,
-    isError,
     isFetchedAfterMount,
-    status
+    status,
   } = useClientsQuery();
 
   useEffect(() => {
-    if (isSuccess && isFetchedAfterMount) {
-      toast.success("Dados buscados com sucesso!");
-      return;
+    if (status === "pending" ) {
+      toast.loading("Carregando...");
+    }
+  
+    if (status === "success" && isFetchedAfterMount) {
+      toast.success("Clientes buscados com sucesso!");
+    }
+  
+    if (status === "error" && isFetchedAfterMount) {
+      toast.error("Erro ao buscar clientes: " + error.message);
     }
 
-    if (isError && isFetchedAfterMount) {
-      toast.error("Erro: " + error.message);
-      return;
-    }
-  }, [isSuccess, isError, error, isFetchedAfterMount]);
+  }, [status, isFetchedAfterMount, error]);
 
-  function handleRefresh() {
-    queryClient.refetchQueries({
-      queryKey: ["clientes"],
-      type: "active",
-    });
-  }
+  const clientesFiltrados = useFiltrarClientes(clientes);
 
   return (
     <main className="w-full flex flex-col p-16 gap-4">
-      <div className="w-full flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <strong className="text-4xl font-bold">Clientes</strong>
-          <RefreshCcw
-            className="cursor-pointer"
-            onClick={() => handleRefresh()}
-          />
-        </div>
-      </div>
+      <ClientHeader />
       <SearchBar />
 
       {status === "pending" ? (
@@ -69,11 +59,50 @@ export function ClientePage() {
           <p>{error.message}</p>
         </div>
       ) : (
-        <Table<clientResponse>
-          headers={["Nome", "CPF", "Data de nascimento", "Endereço"]}
-          personas={clientes ?? []}
-        />
+        <Table>
+          <Table.Header
+            headers={[
+              "ID",
+              "Nome",
+              "CPF",
+              "Data de nascimento",
+              "Endereço",
+              "Detalhes",
+            ]}
+          />
+          <Table.Body>
+            {clientesFiltrados?.map((cliente) => (
+              <ClienteDialogRow key={cliente.id} cliente={cliente} />
+            ))}
+          </Table.Body>
+        </Table>
       )}
     </main>
+  );
+}
+
+function ClienteDialogRow({ cliente }: { cliente: clientResponse }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Table.Row>
+        <Table.Td>{cliente.id}</Table.Td>
+        <Table.Td>{cliente.nome}</Table.Td>
+        <Table.Td>{cliente.cpf}</Table.Td>
+        <Table.Td>{cliente.data_nascimento}</Table.Td>
+        <Table.Td>{cliente.endereco}</Table.Td>
+        <Table.Td>
+          <DialogTrigger asChild>
+            <button className="text-blue-500 hover:underline flex items-center gap-1">
+              <Paperclip size={16} />
+              Ver detalhes
+            </button>
+          </DialogTrigger>
+        </Table.Td>
+      </Table.Row>
+        
+        {isOpen && <ClientDetails cliente={cliente} />}
+    </Dialog>
   );
 }

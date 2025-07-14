@@ -1,8 +1,9 @@
+import { ContatoPage } from "@/templates/contatos/contato";
 
 export default function Home() {
   return (
-    <main className="">
-      <h2>Contatos</h2>
-    </main>
+    <>
+      <ContatoPage />
+    </>
   );
 }
