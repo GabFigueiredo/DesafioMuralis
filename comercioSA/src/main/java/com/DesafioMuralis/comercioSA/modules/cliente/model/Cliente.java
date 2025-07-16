@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.DesafioMuralis.comercioSA.modules.contato.model.Contato;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cliente")
@@ -39,6 +40,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
+    @JsonManagedReference
     private List<Contato> contatos = new ArrayList<>();
 
 }

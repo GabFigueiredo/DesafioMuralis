@@ -3,6 +3,7 @@ package com.DesafioMuralis.comercioSA.modules.contato.model;
 import java.util.UUID;
 
 import com.DesafioMuralis.comercioSA.modules.cliente.model.Cliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class Contato {
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonBackReference
     private Cliente cliente;
 
     private String tipo;

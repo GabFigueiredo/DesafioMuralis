@@ -9,6 +9,7 @@ import com.DesafioMuralis.comercioSA.modules.contato.dto.ContatoResponseDTO;
 import com.DesafioMuralis.comercioSA.modules.contato.model.Contato;
 import com.DesafioMuralis.comercioSA.modules.contato.service.ContatoService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/contatos")
+@Tag(name = "Contato")
 public class ContatoController {
 
     @Autowired
@@ -54,8 +56,6 @@ public class ContatoController {
 
         return ResponseEntity.ok().body(listaContatos);
     }
-
-    @GetMapping("/id")
 
     @PostMapping
     public ResponseEntity<ContatoResponseDTO> salvar(@Valid @RequestBody ContatoRequestDTO contato) {
