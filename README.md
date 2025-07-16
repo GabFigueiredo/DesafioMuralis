@@ -32,16 +32,14 @@ O sistema facilita a gestão de clientes e seus contatos.
 
 ### **Frontend:**
 
-- **Vite**
+- **Next.js**
 - **Typescript**
-- **React.js** 
-- **Styled-components** 
+- **Tailwind CSS** 
 - **Axios** 
-- **Cleave** 
 - **React-hook-form** 
 - **Zod** 
-- **Radix** 
-- **@mui/material** 
+- **Shadcnui**
+- **React Query** 
 
 ### **Backend:**
 
@@ -57,7 +55,7 @@ O sistema facilita a gestão de clientes e seus contatos.
 ### **Pré-requisitos**
 
 - Ter Java 17 e Maven instalado na máquina
-- PostgreSQL instalado.
+- PostgreSQL ou Docker instalado.
   
 ### **Frontend:**
 
@@ -83,7 +81,7 @@ O sistema facilita a gestão de clientes e seus contatos.
 
 ### **Backend:**
 
-1. Crie um banco de dados PostgreSQL
+1. Se não tiver Docker instalado na máquina: crie um banco de dados PostgreSQL
 
 2. Navegue até o diretório do backend:
    ```bash
@@ -95,20 +93,16 @@ O sistema facilita a gestão de clientes e seus contatos.
    mvn clean install
    ```
 
-4. Crie um arquivo .env e configure as variáveis de ambiente. Exemplo:
+4. Configure as variáveis de ambiente em "application.properties". Exemplo:
    ```bash
     DB_URL=jdbc:postgresql://localhost:5432/Nome_do_banco
     DB_USERNAME=seu_nome
     DB_PASSWORD=sua_senha
    ```
 
-5. Execute o servidor backend
-
-- **Banco de dados**: Execute o script "script-db" no Postgre
-
 ## **Uso**
 
-- **Frontend**: Após a instalação, a aplicação estará disponível em `http://localhost:5173`. Basta abrir no seu navegador para testar a interface.
+- **Frontend**: Após a instalação, a aplicação estará disponível em `http://localhost:3000`. Basta abrir no seu navegador para testar a interface.
 - **Backend**: A API estará disponível em `http://localhost:8080/`. Teste os endpoints usando as coleções anexadas ou pela interface. 
 
 ---
@@ -116,20 +110,16 @@ O sistema facilita a gestão de clientes e seus contatos.
 ## **Estrutura de Pastas**
 
 ```
-/DesafioMuralis-Front
+/front-next
    /public
    /src
-      /@types
-      /assets
+      /app
       /components
-      /contexts
+      /hooks
       /interfaces
-      /layouts
       /lib
       /pages
-      /reducers
-      /styles
-      /utils
+      /templates
 
 /comercioSA
 /src
@@ -138,16 +128,20 @@ O sistema facilita a gestão de clientes e seus contatos.
       /com
       /DesafioMuralis
          /comercioSA
-            /controller
-            /model
-            /repository
-            /service
+            /config
+            /exceptions
+            /modules
+              /controller
+              /dto
+              /model
+              /repository
+              /service
    ```
 
 ---
 
 ## **Funcionalidades**
-
+ 
 - [x] Cadastro de clientes (Nome, CPF, Data de Nascimento, Endereço)
 - [x] Edição dos dados de um cliente cadastrado
 - [x] Exclusão de um cliente cadastrado
