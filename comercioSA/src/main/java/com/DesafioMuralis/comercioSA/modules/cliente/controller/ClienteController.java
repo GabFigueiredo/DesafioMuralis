@@ -1,6 +1,5 @@
 package com.DesafioMuralis.comercioSA.modules.cliente.controller;
 
-import com.DesafioMuralis.comercioSA.exceptions.BaseBusinessException;
 import com.DesafioMuralis.comercioSA.exceptions.ErrorMessageDTO;
 import com.DesafioMuralis.comercioSA.modules.cliente.dto.ClientRequestDTO;
 import com.DesafioMuralis.comercioSA.modules.cliente.dto.ClientResponseDTO;
