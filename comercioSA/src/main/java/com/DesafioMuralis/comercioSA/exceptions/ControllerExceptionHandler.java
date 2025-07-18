@@ -37,6 +37,6 @@ public class ControllerExceptionHandler {
         ErrorMessageDTO errorMessage = new ErrorMessageDTO(e.getField(), e.getMessage());
         errorMessageList.add(errorMessage);
 
-        return new ResponseEntity<>(errorMessageList, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorMessageList, e.getStatus());
     }
 }
