@@ -5,7 +5,13 @@ import {
 import api from "@/lib/axios";
 
 export async function getClientsById(id: string): Promise<clientResponse> {
-  const response = await api.get(`/cliente/${id}`);
+  const token = sessionStorage.getItem("Token");
+
+  const response = await api.get(`/cliente/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const parsed = singleClientResponseSchema.safeParse(response.data);
 
   if (!parsed.success) {

@@ -5,7 +5,13 @@ import {
 import api from "@/lib/axios";
 
 export async function getContacts(): Promise<contactResponse[]> {
-  const response = await api.get("/contatos");
+  const token = sessionStorage.getItem("Token");
+
+  const response = await api.get("/contatos", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const parsed = contactResponseSchema.safeParse(response.data);
 
   if (!parsed.success) {

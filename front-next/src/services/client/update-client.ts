@@ -7,7 +7,13 @@ interface updateClientProps {
 }
 
 export function updateClient({ id, dadosAtualizados }: updateClientProps) {
-  const response = api.put(`/cliente/${id}`, dadosAtualizados);
+  const token = sessionStorage.getItem("Token");
+
+  const response = api.put(`/cliente/${id}`, dadosAtualizados, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response;
 }

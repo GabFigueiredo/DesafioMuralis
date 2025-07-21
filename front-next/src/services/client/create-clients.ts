@@ -13,7 +13,13 @@ export async function createClient(
     throw new Error("Dados inválidos para criação de cliente");
   }
 
-  const response = await api.post("/cliente", parsed.data);
+  const token = sessionStorage.getItem("Token");
+
+  const response = await api.post("/cliente", parsed.data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response.data;
 }

@@ -7,7 +7,13 @@ interface updateContactProps {
 }
 
 export function updateContact({ id, dadosAtualizados }: updateContactProps) {
-  const response = api.put(`/contatos/${id}`, dadosAtualizados);
+  const token = sessionStorage.getItem("Token");
+
+  const response = api.put(`/contatos/${id}`, dadosAtualizados, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return response;
 }

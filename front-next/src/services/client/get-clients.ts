@@ -5,7 +5,14 @@ import {
 import api from "@/lib/axios";
 
 export async function getClients(): Promise<clientResponse[]> {
-  const response = await api.get("/cliente");
+  const token = sessionStorage.getItem("Token");
+
+  const response = await api.get("/cliente", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   const parsed = clientResponseSchema.safeParse(response.data);
 
   if (!parsed.success) {

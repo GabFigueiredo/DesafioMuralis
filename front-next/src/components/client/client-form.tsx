@@ -16,14 +16,13 @@ const NewClientSchema = z.object({
     endereco: z.string(),
 })
 
-
 type newClientFormInputs = z.infer<typeof NewClientSchema>
 
 export function ClientForm({ client }: { client?: clientResponse }) {
     const { mutate: createClient, status: createStatus } = useCreateClient();
     const { mutate: updateClient, status: updateStatus } = useUpdateClient();
 
-    const {register,
+    const { register,
         handleSubmit,
         watch,
         control,
